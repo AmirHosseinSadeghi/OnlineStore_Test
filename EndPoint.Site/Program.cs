@@ -1,11 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Store_Test.Application.Interfaces.Contexts;
+using Store_Test.Application.Services.Users.Queries.GetRoles;
+using Store_Test.Application.Services.Users.Queries.GetUsers;
 using Store_Test.Persistence.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+builder.Services.AddScoped<IGetUsersService, GetUsersService>();
+builder.Services.AddScoped<IGetRolesService, GetRolesService>();
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer("Data Source=.;Initial Catalog=OnlineStoreDb;Integrated Security=True;"));
 builder.Services.AddControllersWithViews();
 
